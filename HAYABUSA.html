@@ -1,0 +1,1196 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Suzuki Hayabusa | VOID MOTOS</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+            color: #e8e8e8;
+            background: #080808;
+            overflow-x: hidden;
+        }
+
+
+        /* ==============================
+           FUNDO
+        ============================== */
+
+        body::before {
+            content: "";
+            position: fixed;
+            inset: 0;
+
+            background:
+                radial-gradient(circle at 15% 20%,
+                    rgba(90, 90, 90, 0.12),
+                    transparent 30%),
+
+                radial-gradient(circle at 85% 75%,
+                    rgba(70, 70, 70, 0.10),
+                    transparent 30%),
+
+                linear-gradient(135deg,
+                    #050505,
+                    #111111,
+                    #080808,
+                    #181818);
+
+            z-index: -2;
+        }
+
+
+        /* Textura escura */
+
+        body::after {
+            content: "";
+            position: fixed;
+            inset: 0;
+
+            background-image:
+                repeating-linear-gradient(0deg,
+                    rgba(255, 255, 255, 0.015) 0px,
+                    rgba(255, 255, 255, 0.015) 1px,
+                    transparent 1px,
+                    transparent 4px);
+
+            pointer-events: none;
+            z-index: -1;
+        }
+
+
+        /* ==============================
+           CABEÇALHO
+        ============================== */
+
+        header {
+            min-height: 390px;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            text-align: center;
+            padding: 60px 20px;
+
+            background:
+                linear-gradient(rgba(0, 0, 0, 0.72),
+                    rgba(0, 0, 0, 0.90)),
+                url("https://mobilidade.estadao.com.br/wp-content/uploads/2022/01/hayabusa2022_action3.jpg");
+
+            background-size: cover;
+            background-position: center;
+
+            border-bottom: 3px solid #444;
+
+            box-shadow:
+                0 15px 45px rgba(0, 0, 0, 0.9);
+        }
+
+
+        .header-content {
+            max-width: 900px;
+        }
+
+
+        .tag {
+            display: inline-block;
+
+            margin-bottom: 20px;
+            padding: 8px 20px;
+
+            color: #d0d0d0;
+
+            font-size: 12px;
+            font-weight: bold;
+
+            letter-spacing: 4px;
+
+            border: 1px solid #666;
+
+            background: rgba(0, 0, 0, 0.75);
+        }
+
+
+        header h1 {
+            font-family: Georgia, "Times New Roman", serif;
+
+            font-size: clamp(45px, 8vw, 90px);
+
+            line-height: 0.9;
+
+            text-transform: uppercase;
+
+            letter-spacing: 6px;
+
+            color: #f1f1f1;
+
+            text-shadow:
+                3px 3px 0 #000,
+                0 8px 25px rgba(0, 0, 0, 1);
+        }
+
+
+        header p {
+            margin-top: 25px;
+
+            color: #a9a9a9;
+
+            font-size: 16px;
+
+            letter-spacing: 4px;
+        }
+
+
+        /* ==============================
+           MENU
+        ============================== */
+
+        nav {
+            position: sticky;
+            top: 0;
+            z-index: 100;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            flex-wrap: wrap;
+
+            gap: 30px;
+
+            padding: 18px;
+
+            background: rgba(5, 5, 5, 0.97);
+
+            border-bottom: 1px solid #444;
+
+            box-shadow:
+                0 5px 20px rgba(0, 0, 0, 0.8);
+        }
+
+
+        nav a {
+            position: relative;
+
+            color: #cfcfcf;
+
+            text-decoration: none;
+
+            font-size: 13px;
+            font-weight: bold;
+
+            letter-spacing: 1px;
+
+            transition: 0.3s;
+        }
+
+
+        nav a::after {
+            content: "";
+
+            position: absolute;
+
+            left: 0;
+            bottom: -7px;
+
+            width: 0;
+            height: 2px;
+
+            background: #999;
+
+            transition: 0.3s;
+        }
+
+
+        nav a:hover {
+            color: #fff;
+        }
+
+
+        nav a:hover::after {
+            width: 100%;
+        }
+
+
+        /* ==============================
+           CONTAINER
+        ============================== */
+
+        .container {
+            width: min(1150px, 92%);
+
+            margin: auto;
+
+            padding: 80px 0;
+        }
+
+
+        /* ==============================
+           ÁREA DA MOTO
+        ============================== */
+
+        .moto {
+            display: grid;
+
+            grid-template-columns:
+                1.15fr 0.85fr;
+
+            align-items: center;
+
+            gap: 55px;
+        }
+
+
+        /* ==============================
+           IMAGEM
+        ============================== */
+
+        .imagem-moto {
+            position: relative;
+
+            overflow: hidden;
+
+            border: 3px solid #444;
+
+            border-radius: 3px;
+
+            background: #050505;
+
+            box-shadow:
+                0 20px 50px rgba(0, 0, 0, 0.9);
+
+            transition: 0.4s;
+        }
+
+
+        .imagem-moto::before {
+            content: "HAYABUSA";
+
+            position: absolute;
+
+            top: 18px;
+            left: 18px;
+
+            z-index: 2;
+
+            padding: 8px 15px;
+
+            color: #ddd;
+
+            font-size: 11px;
+            font-weight: bold;
+
+            letter-spacing: 3px;
+
+            border: 1px solid #777;
+
+            background: rgba(0, 0, 0, 0.9);
+        }
+
+
+        .imagem-moto::after {
+            content: "";
+
+            position: absolute;
+            inset: 0;
+
+            background:
+                linear-gradient(120deg,
+                    rgba(255, 255, 255, 0.08),
+                    transparent 45%,
+                    rgba(0, 0, 0, 0.35));
+
+            pointer-events: none;
+        }
+
+
+        .imagem-moto img {
+            display: block;
+
+            width: 100%;
+            height: 500px;
+
+            object-fit: cover;
+
+            filter: grayscale(20%);
+
+            transition: 0.5s;
+        }
+
+
+        .imagem-moto:hover {
+            transform: translateY(-5px);
+
+            border-color: #777;
+
+            box-shadow:
+                0 25px 60px rgba(0, 0, 0, 1);
+        }
+
+
+        .imagem-moto:hover img {
+            transform: scale(1.04);
+        }
+
+
+        /* ==============================
+           INFORMAÇÕES
+        ============================== */
+
+        .info {
+            padding: 40px;
+
+            background:
+                linear-gradient(145deg,
+                    #1b1b1b,
+                    #0b0b0b);
+
+            border: 2px solid #3f3f3f;
+
+            border-radius: 3px;
+
+            box-shadow:
+                0 20px 50px rgba(0, 0, 0, 0.8);
+        }
+
+
+        .info h2 {
+            margin-bottom: 18px;
+
+            font-family: Georgia, "Times New Roman", serif;
+
+            color: #eeeeee;
+
+            font-size: 38px;
+
+            letter-spacing: 1px;
+        }
+
+
+        .linha {
+            width: 90px;
+            height: 3px;
+
+            margin-bottom: 25px;
+
+            background: #777;
+        }
+
+
+        .descricao {
+            color: #bdbdbd;
+
+            font-size: 16px;
+
+            line-height: 1.8;
+        }
+
+
+        .descricao b {
+            color: #f0f0f0;
+        }
+
+
+        /* ==============================
+           PREÇO
+        ============================== */
+
+        .preco-area {
+            margin: 30px 0;
+
+            padding: 20px;
+
+            border-left: 4px solid #777;
+
+            background:
+                rgba(255, 255, 255, 0.035);
+        }
+
+
+        .preco-label {
+            color: #888;
+
+            font-size: 12px;
+
+            text-transform: uppercase;
+
+            letter-spacing: 2px;
+        }
+
+
+        .preco {
+            margin-top: 5px;
+
+            color: #eeeeee;
+
+            font-family: Georgia, "Times New Roman", serif;
+
+            font-size: 36px;
+
+            font-weight: bold;
+        }
+
+
+        /* ==============================
+           BOTÕES
+        ============================== */
+
+        .botoes {
+            display: grid;
+            gap: 12px;
+        }
+
+
+        .btn {
+            display: flex;
+
+            align-items: center;
+            justify-content: center;
+
+            min-height: 50px;
+
+            padding: 12px 20px;
+
+            color: #eee;
+
+            text-decoration: none;
+
+            font-weight: bold;
+            font-size: 14px;
+
+            border: 2px solid #666;
+
+            border-radius: 3px;
+
+            background:
+                linear-gradient(90deg,
+                    #242424,
+                    #444);
+
+            transition: 0.3s;
+        }
+
+
+        .btn:hover {
+            transform: translateY(-3px);
+
+            background:
+                linear-gradient(90deg,
+                    #555,
+                    #888);
+
+            color: #000;
+
+            box-shadow:
+                0 8px 25px rgba(0, 0, 0, 0.8);
+        }
+
+
+        .btn-secundario {
+            background: transparent;
+
+            border-color: #666;
+        }
+
+
+        .btn-secundario:hover {
+            background: #ddd;
+
+            color: #000;
+
+            border-color: #ddd;
+        }
+
+
+        /* ==============================
+           ÁUDIO
+        ============================== */
+
+        .audio-box {
+            margin-top: 25px;
+
+            padding: 20px;
+
+            text-align: center;
+
+            border: 1px solid #444;
+
+            background:
+                rgba(255, 255, 255, 0.025);
+        }
+
+
+        .audio-box h3 {
+            margin-bottom: 15px;
+
+            color: #ccc;
+
+            font-size: 16px;
+        }
+
+
+        audio {
+            width: 100%;
+            height: 42px;
+        }
+
+
+        /* ==============================
+           TÍTULOS
+        ============================== */
+
+        .titulo-secao {
+            margin-bottom: 30px;
+
+            text-align: center;
+        }
+
+
+        .titulo-secao span {
+            color: #999;
+
+            font-size: 12px;
+
+            font-weight: bold;
+
+            letter-spacing: 4px;
+
+            text-transform: uppercase;
+        }
+
+
+        .titulo-secao h2 {
+            margin-top: 8px;
+
+            color: #e5e5e5;
+
+            font-family: Georgia, "Times New Roman", serif;
+
+            font-size: 36px;
+
+            letter-spacing: 1px;
+        }
+
+
+        /* ==============================
+           VÍDEO
+        ============================== */
+
+        .video {
+            margin-top: 90px;
+        }
+
+
+        .video-container {
+            padding: 12px;
+
+            border: 3px solid #444;
+
+            background: #050505;
+
+            box-shadow:
+                0 20px 50px rgba(0, 0, 0, 0.9);
+        }
+
+
+        .video video {
+            display: block;
+
+            width: 100%;
+
+            max-height: 600px;
+
+            background: #000;
+        }
+
+
+        /* ==============================
+           FICHA TÉCNICA
+        ============================== */
+
+        .ficha {
+            margin-top: 90px;
+        }
+
+
+        .ficha-grid {
+            display: grid;
+
+            grid-template-columns:
+                repeat(3, 1fr);
+
+            gap: 15px;
+        }
+
+
+        .ficha-card {
+            position: relative;
+
+            overflow: hidden;
+
+            padding: 25px;
+
+            border: 1px solid #3d3d3d;
+
+            background:
+                linear-gradient(145deg,
+                    #1b1b1b,
+                    #0c0c0c);
+
+            transition: 0.3s;
+        }
+
+
+        .ficha-card::before {
+            content: "";
+
+            position: absolute;
+
+            left: 0;
+            top: 0;
+
+            width: 4px;
+            height: 100%;
+
+            background: #666;
+        }
+
+
+        .ficha-card:hover {
+            transform: translateY(-5px);
+
+            border-color: #777;
+
+            box-shadow:
+                0 10px 30px rgba(0, 0, 0, 0.8);
+        }
+
+
+        .ficha-card span {
+            display: block;
+
+            margin-bottom: 8px;
+
+            color: #888;
+
+            font-size: 12px;
+
+            text-transform: uppercase;
+
+            letter-spacing: 1px;
+        }
+
+
+        .ficha-card strong {
+            color: #dedede;
+
+            font-family: Georgia, "Times New Roman", serif;
+
+            font-size: 18px;
+        }
+
+
+        /* ==============================
+           DIVISÓRIAS
+        ============================== */
+
+        section {
+            position: relative;
+        }
+
+
+        section::before {
+            content: "";
+
+            display: block;
+
+            width: 70px;
+            height: 2px;
+
+            margin: 0 auto 45px;
+
+            background: #444;
+        }
+
+
+        .moto::before {
+            display: none;
+        }
+
+
+
+        /* ==============================
+           RESPONSIVIDADE
+        ============================== */
+
+        @media (max-width: 900px) {
+
+            .moto {
+                grid-template-columns: 1fr;
+            }
+
+
+            .imagem-moto {
+                max-width: 700px;
+
+                margin: auto;
+            }
+
+
+            .info {
+                max-width: 700px;
+
+                margin: auto;
+            }
+
+
+            .ficha-grid {
+                grid-template-columns:
+                    repeat(2, 1fr);
+            }
+
+        }
+
+
+        @media (max-width: 600px) {
+
+            header {
+                min-height: 300px;
+
+                padding: 40px 15px;
+            }
+
+
+            header h1 {
+                font-size: 45px;
+            }
+
+
+            header p {
+                font-size: 12px;
+
+                letter-spacing: 2px;
+            }
+
+
+            nav {
+                gap: 18px;
+
+                padding: 15px 10px;
+            }
+
+
+            nav a {
+                font-size: 11px;
+            }
+
+
+            .container {
+                padding: 50px 0;
+            }
+
+
+            .imagem-moto img {
+                height: 330px;
+            }
+
+
+            .info {
+                padding: 25px;
+            }
+
+
+            .info h2 {
+                font-size: 30px;
+            }
+
+
+            .preco {
+                font-size: 30px;
+            }
+
+
+            .titulo-secao h2 {
+                font-size: 28px;
+            }
+
+
+            .ficha-grid {
+                grid-template-columns: 1fr;
+            }
+
+        }
+
+
+        @media (max-width: 400px) {
+
+            header h1 {
+                font-size: 36px;
+
+                letter-spacing: 2px;
+            }
+
+
+            nav {
+                gap: 12px;
+            }
+
+
+            nav a {
+                font-size: 10px;
+            }
+
+
+            .info {
+                padding: 20px;
+            }
+
+
+            .btn {
+                font-size: 12px;
+            }
+
+        }
+    </style>
+
+</head>
+
+
+<body>
+
+
+    <!-- ==============================
+         CABEÇALHO
+    =============================== -->
+
+    <header>
+
+        <div class="header-content">
+
+            <span class="tag">
+                VOID MOTOS
+            </span>
+
+
+            <h1>
+                SUZUKI<br>
+                HAYABUSA
+            </h1>
+
+
+            <p>
+                POTÊNCIA • VELOCIDADE • PRECISÃO
+            </p>
+
+        </div>
+
+    </header>
+
+
+    <!-- ==============================
+         MENU
+    =============================== -->
+
+    <nav>
+
+        <a href="site principal.html">
+            INÍCIO
+        </a>
+
+    </nav>
+
+
+    <!-- ==============================
+         CONTEÚDO
+    =============================== -->
+
+    <main class="container">
+
+
+        <section class="moto" id="moto">
+
+
+            <div class="imagem-moto">
+
+                <img src="https://mobilidade.estadao.com.br/wp-content/uploads/2022/01/hayabusa2022_action3.jpg"
+                    alt="Suzuki Hayabusa">
+
+            </div>
+
+
+            <div class="info">
+
+                <h2>
+                    Suzuki Hayabusa
+                </h2>
+
+
+                <div class="linha"></div>
+
+
+                <p class="descricao">
+
+                    A <b>Suzuki Hayabusa</b> é uma das motocicletas
+                    esportivas mais famosas do mundo.
+
+                    Com seu design aerodinâmico, potência impressionante
+                    e estabilidade em alta velocidade, ela se tornou
+                    um verdadeiro ícone das motos de alta performance.
+
+                </p>
+
+
+                <div class="preco-area">
+
+                    <div class="preco-label">
+                        Preço estimado
+                    </div>
+
+
+                    <div class="preco">
+                        R$ 120.000
+                    </div>
+
+                </div>
+
+
+                <div class="botoes">
+
+                    <a class="btn" href="formulario hayabusa.html">
+
+                        FORMULÁRIO PARA COMPRA
+
+                    </a>
+
+
+
+                </div>
+
+
+                <div class="audio-box">
+
+                    <h3>
+                        🔊 BARULHO DA HAYABUSA
+                    </h3>
+
+
+                    <audio controls>
+
+                        <source src="Hayabusa.mp3" type="audio/mpeg">
+
+                        Seu navegador não suporta áudio.
+
+                    </audio>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- ==============================
+             VÍDEO
+        =============================== -->
+
+        <section class="video" id="video">
+
+
+            <div class="titulo-secao">
+
+                <span>
+                    EXPERIÊNCIA
+                </span>
+
+
+                <h2>
+                    Veja a Hayabusa em ação
+                </h2>
+
+            </div>
+
+
+            <div class="video-container">
+
+                <video controls>
+
+                    <source src="Video/hayabusa.mp4" type="video/mp4">
+
+                    Seu navegador não suporta vídeo.
+
+                </video>
+
+            </div>
+
+        </section>
+
+
+        <!-- ==============================
+             FICHA TÉCNICA
+        =============================== -->
+
+        <section class="ficha" id="ficha">
+
+
+            <div class="titulo-secao">
+
+                <span>
+                    PERFORMANCE
+                </span>
+
+
+                <h2>
+                    Ficha Técnica
+                </h2>
+
+            </div>
+
+
+            <div class="ficha-grid">
+
+
+                <div class="ficha-card">
+
+                    <span>
+                        Motor
+                    </span>
+
+                    <strong>
+                        1.340 cc
+                    </strong>
+
+                </div>
+
+
+                <div class="ficha-card">
+
+                    <span>
+                        Cilindros
+                    </span>
+
+                    <strong>
+                        4 em linha
+                    </strong>
+
+                </div>
+
+
+                <div class="ficha-card">
+
+                    <span>
+                        Potência
+                    </span>
+
+                    <strong>
+                        190 cv
+                    </strong>
+
+                </div>
+
+
+                <div class="ficha-card">
+
+                    <span>
+                        Velocidade máxima
+                    </span>
+
+                    <strong>
+                        299 km/h
+                    </strong>
+
+                </div>
+
+
+                <div class="ficha-card">
+
+                    <span>
+                        0–100 km/h
+                    </span>
+
+                    <strong>
+                        Aproximadamente 3 segundos
+                    </strong>
+
+                </div>
+
+
+                <div class="ficha-card">
+
+                    <span>
+                        Transmissão
+                    </span>
+
+                    <strong>
+                        6 marchas
+                    </strong>
+
+                </div>
+
+
+                <div class="ficha-card">
+
+                    <span>
+                        Peso
+                    </span>
+
+                    <strong>
+                        264 kg
+                    </strong>
+
+                </div>
+
+
+                <div class="ficha-card">
+
+                    <span>
+                        Categoria
+                    </span>
+
+                    <strong>
+                        Superesportiva
+                    </strong>
+
+                </div>
+
+
+                <div class="ficha-card">
+
+                    <span>
+                        Marca
+                    </span>
+
+                    <strong>
+                        Suzuki
+                    </strong>
+
+                </div>
+
+
+            </div>
+
+        </section>
+
+
+    </main>
+
+
+
+</body>
+
+</html>

@@ -1,0 +1,778 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title> VOID MOTOS</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+            background: #080808;
+            color: white;
+        }
+
+
+        /* =========================
+           ABERTURA
+        ========================== */
+
+        .abertura {
+            height: 100vh;
+            width: 100%;
+
+            position: fixed;
+            top: 0;
+            left: 0;
+
+            display: flex;
+            justify-content: center;
+            align-items: center;
+
+            text-align: center;
+
+            background:
+                linear-gradient(rgba(0, 0, 0, 0.55),
+                    rgba(0, 0, 0, 0.85)),
+                url("https://mobilidade.estadao.com.br/wp-content/uploads/2024/03/2022_YAM_YZF1000R1_EU_DPBMC_ACT_001_03_preview.jpg");
+
+            background-size: cover;
+            background-position: center;
+
+            z-index: 9999;
+
+            transition:
+                opacity 0.8s ease,
+                visibility 0.8s ease;
+        }
+
+        .abertura.sair {
+            opacity: 0;
+            visibility: hidden;
+        }
+
+        .abertura-conteudo {
+            padding: 30px;
+        }
+
+        .abertura h1 {
+            font-size: clamp(50px, 10vw, 110px);
+            letter-spacing: 12px;
+            font-weight: 900;
+
+            text-shadow:
+                0 5px 20px rgba(0, 0, 0, 0.9),
+                0 0 35px rgba(255, 255, 255, 0.15);
+        }
+
+        .abertura p {
+            margin-top: 18px;
+
+            font-size: 16px;
+            letter-spacing: 5px;
+
+            color: #ccc;
+        }
+
+        .linha {
+            width: 80px;
+            height: 2px;
+
+            background: white;
+
+            margin: 25px auto;
+        }
+
+        .entrar {
+            display: inline-block;
+
+            padding: 14px 40px;
+
+            border: 1px solid white;
+
+            color: white;
+            text-decoration: none;
+
+            font-size: 14px;
+            letter-spacing: 3px;
+
+            transition: 0.3s;
+        }
+
+        .entrar:hover {
+            background: white;
+            color: black;
+        }
+
+
+        /* =========================
+           CABEÇALHO
+        ========================== */
+
+        header {
+            min-height: 320px;
+
+            display: flex;
+            flex-direction: column;
+
+            justify-content: center;
+            align-items: center;
+
+            text-align: center;
+
+            background:
+                linear-gradient(rgba(0, 0, 0, 0.6),
+                    rgba(0, 0, 0, 0.9)),
+                url("https://mobilidade.estadao.com.br/wp-content/uploads/2024/03/2022_YAM_YZF1000R1_EU_DPBMC_ACT_001_03_preview.jpg");
+
+            background-size: cover;
+            background-position: center;
+
+            border-bottom: 1px solid #333;
+        }
+
+        header h1 {
+            font-size: 50px;
+            letter-spacing: 8px;
+            font-weight: 800;
+        }
+
+        header p {
+            margin-top: 15px;
+
+            color: #aaa;
+
+            letter-spacing: 3px;
+        }
+
+
+        /* =========================
+           MENU
+        ========================== */
+
+        nav {
+            position: sticky;
+            top: 0;
+
+            z-index: 100;
+
+            display: flex;
+            justify-content: center;
+            align-items: center;
+
+            gap: 35px;
+
+            padding: 18px;
+
+            background: rgba(8, 8, 8, 0.96);
+
+            border-bottom: 1px solid #333;
+        }
+
+        nav a {
+            color: #bbb;
+
+            text-decoration: none;
+
+            font-size: 13px;
+
+            letter-spacing: 2px;
+
+            transition: 0.3s;
+        }
+
+        nav a:hover {
+            color: white;
+
+            text-shadow:
+                0 0 10px white;
+        }
+
+
+        /* =========================
+           TÍTULO
+        ========================== */
+
+        .titulo {
+            text-align: center;
+
+            padding: 70px 20px 35px;
+        }
+
+        .titulo h2 {
+            font-size: 34px;
+
+            letter-spacing: 4px;
+
+            font-weight: 700;
+        }
+
+        .titulo p {
+            margin-top: 15px;
+
+            color: #888;
+
+            font-size: 16px;
+
+            line-height: 1.8;
+        }
+
+        .potencia {
+            color: #ddd;
+
+            text-decoration: none;
+
+            font-weight: bold;
+
+            border-bottom: 1px solid #777;
+
+            transition: 0.3s;
+        }
+
+        .potencia:hover {
+            color: white;
+
+            border-color: white;
+        }
+
+
+        /* =========================
+           MOTOS
+        ========================== */
+
+        .container {
+            width: 90%;
+            max-width: 1150px;
+
+            margin: auto;
+
+            padding: 30px 0 80px;
+
+            display: flex;
+
+            justify-content: center;
+
+            flex-wrap: wrap;
+
+            gap: 30px;
+        }
+
+
+        /* =========================
+           CARD
+        ========================== */
+
+        .card {
+            width: 320px;
+
+            background: #111;
+
+            border: 1px solid #2c2c2c;
+
+            border-radius: 4px;
+
+            overflow: hidden;
+
+            transition: 0.4s;
+        }
+
+        .card:hover {
+            transform: translateY(-8px);
+
+            border-color: #777;
+
+            box-shadow:
+                0 15px 35px rgba(0, 0, 0, 0.7);
+        }
+
+        .card img {
+            width: 100%;
+            height: 220px;
+
+            object-fit: cover;
+
+            display: block;
+
+            filter: brightness(0.75);
+
+            transition: 0.4s;
+        }
+
+        .card:hover img {
+            filter: brightness(1);
+
+            transform: scale(1.03);
+        }
+
+        .card-content {
+            padding: 25px;
+        }
+
+        .card h3 {
+            font-size: 21px;
+
+            margin-bottom: 12px;
+
+            letter-spacing: 1px;
+        }
+
+        .specs {
+            color: #999;
+
+            margin-bottom: 15px;
+
+            line-height: 1.8;
+        }
+
+        .price {
+            font-size: 22px;
+
+            font-weight: bold;
+
+            margin-bottom: 20px;
+        }
+
+
+        /* =========================
+           BOTÃO
+        ========================== */
+
+        .btn {
+            display: inline-block;
+
+            padding: 11px 25px;
+
+            border: 1px solid #777;
+
+            color: white;
+
+            text-decoration: none;
+
+            font-size: 13px;
+
+            letter-spacing: 2px;
+
+            transition: 0.3s;
+        }
+
+        .btn:hover {
+            background: white;
+
+            color: black;
+
+            border-color: white;
+        }
+
+
+        /* =========================
+           HIPERTEXTO
+        ========================== */
+
+        .hipertexto {
+            width: 90%;
+            max-width: 1000px;
+
+            margin: 0 auto 80px;
+
+            padding: 45px;
+
+            background: #101010;
+
+            border: 1px solid #2c2c2c;
+
+            text-align: center;
+        }
+
+        .hipertexto h2 {
+            font-size: 28px;
+
+            letter-spacing: 3px;
+
+            margin-bottom: 20px;
+        }
+
+        .hipertexto p {
+            color: #888;
+
+            line-height: 1.8;
+
+            margin-bottom: 25px;
+        }
+
+        .links {
+            display: flex;
+
+            justify-content: center;
+
+            flex-wrap: wrap;
+
+            gap: 15px;
+        }
+
+        .link {
+            display: inline-block;
+
+            padding: 12px 22px;
+
+            border: 1px solid #444;
+
+            color: #ccc;
+
+            text-decoration: none;
+
+            font-size: 13px;
+
+            letter-spacing: 1px;
+
+            transition: 0.3s;
+        }
+
+        .link:hover {
+            background: white;
+
+            color: black;
+
+            border-color: white;
+        }
+
+
+        /* =========================
+           CONTATO
+        ========================== */
+
+        .contato {
+            width: 90%;
+            max-width: 900px;
+
+            margin: 0 auto 80px;
+
+            padding: 45px;
+
+            text-align: center;
+
+            background: #101010;
+
+            border: 1px solid #2c2c2c;
+        }
+
+        .contato h2 {
+            font-size: 28px;
+
+            letter-spacing: 3px;
+
+            margin-bottom: 15px;
+        }
+
+        .contato p {
+            color: #888;
+
+            line-height: 1.8;
+        }
+
+
+        /* =========================
+           RODAPÉ
+        ========================== */
+
+        footer {
+            text-align: center;
+
+            padding: 35px 20px;
+
+            background: #050505;
+
+            border-top: 1px solid #292929;
+
+            color: #666;
+        }
+
+        footer strong {
+            color: white;
+
+            letter-spacing: 2px;
+        }
+
+
+        /* =========================
+           RESPONSIVO
+        ========================== */
+
+        @media (max-width: 600px) {
+
+            .abertura h1 {
+                font-size: 45px;
+                letter-spacing: 6px;
+            }
+
+            .abertura p {
+                font-size: 11px;
+                letter-spacing: 3px;
+            }
+
+            header h1 {
+                font-size: 32px;
+                letter-spacing: 5px;
+            }
+
+            nav {
+                gap: 12px;
+                padding: 15px 8px;
+            }
+
+            nav a {
+                font-size: 10px;
+                letter-spacing: 1px;
+            }
+
+            .titulo h2 {
+                font-size: 26px;
+            }
+
+            .card {
+                width: 95%;
+            }
+
+            .hipertexto,
+            .contato {
+                padding: 30px 20px;
+            }
+        }
+    </style>
+
+</head>
+
+
+<body>
+
+
+    <!-- =========================
+         ABERTURA
+    ========================== -->
+
+    <div class="abertura" id="abertura">
+
+        <div class="abertura-conteudo">
+
+            <h1>
+
+                VOID MOTOS
+
+            </h1>
+
+            <p>
+                POTÊNCIA • VELOCIDADE • ESTILO
+            </p>
+
+            <div class="linha"></div>
+
+            <a href="#" class="entrar" onclick="entrarSite(event)">
+                ENTRAR
+            </a>
+
+        </div>
+
+    </div>
+
+
+    <!-- =========================
+         CABEÇALHO
+    ========================== -->
+
+    <header id="inicio">
+
+        <h1>
+            VOID MOTOS
+        </h1>
+
+        <p>
+            Sua próxima moto começa aqui.
+        </p>
+
+    </header>
+
+
+    <!-- =========================
+         MENU
+    ========================== -->
+
+
+    <!-- =========================
+         TÍTULO
+    ========================== -->
+
+    <section class="titulo" id="modelos">
+
+        <h2>
+            MOTOS EM DESTAQUE
+        </h2>
+
+        <p>
+
+            <a href="potenciaa.html" class="potencia">
+                Potência
+            </a>
+
+            é muito mais do que velocidade.
+
+            <br>
+
+            É a força do motor, o som da aceleração
+            e a sensação de liberdade em cada quilômetro.
+
+            <br>
+
+            Conheça máquinas que representam
+            estilo, desempenho e paixão por duas rodas.
+
+        </p>
+
+    </section>
+
+
+    <!-- =========================
+         MOTOS
+    ========================== -->
+
+    <div class="container">
+
+
+        <!-- YAMAHA R1 -->
+
+        <div class="card">
+
+            <img src="https://mobilidade.estadao.com.br/wp-content/uploads/2024/03/2022_YAM_YZF1000R1_EU_DPBMC_ACT_001_03_preview.jpg"
+                alt="Yamaha R1">
+
+            <div class="card-content">
+
+                <h3>
+                    Yamaha R1
+                </h3>
+
+                <p class="specs">
+                    998cc • 200cv
+                </p>
+
+                <p class="price">
+                    R$ 120.000
+                </p>
+
+                <a class="btn" href="yamaha%20r1.html">
+                    COMPRAR
+                </a>
+
+            </div>
+
+        </div>
+
+
+        <!-- KAWASAKI -->
+
+        <div class="card">
+
+            <img src="https://mobilidade.estadao.com.br/wp-content/uploads/2024/05/24zx1002l-40rgn2srf3cg-a.jpg"
+                alt="Kawasaki Ninja ZX-10R">
+
+            <div class="card-content">
+
+                <h3>
+                    Kawasaki Ninja ZX-10R
+                </h3>
+
+                <p class="specs">
+                    998cc • 203cv
+                </p>
+
+                <p class="price">
+                    R$ 115.000
+                </p>
+
+                <a class="btn" href="ninja.2.html">
+                    COMPRAR
+                </a>
+
+            </div>
+
+        </div>
+
+
+        <!-- HAYABUSA -->
+
+        <div class="card">
+
+            <img src="https://mobilidade.estadao.com.br/wp-content/uploads/2022/01/hayabusa2022_action3.jpg"
+                alt="Suzuki Hayabusa">
+
+            <div class="card-content">
+
+                <h3>
+                    Suzuki Hayabusa
+                </h3>
+
+                <p class="specs">
+                    1340cc • 190cv
+                </p>
+
+                <p class="price">
+                    R$ 124.500
+                </p>
+
+                <a class="btn" href="HAYABUSA.html">
+                    COMPRAR
+                </a>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+
+
+
+
+
+    <!-- =========================
+         JAVASCRIPT
+    ========================== -->
+
+    <script>
+
+        function entrarSite(event) {
+
+            event.preventDefault();
+
+            document
+                .getElementById("abertura")
+                .classList.add("sair");
+
+        }
+
+
+        setTimeout(function () {
+
+            document
+                .getElementById("abertura")
+                .classList.add("sair");
+
+        }, 5000);
+
+    </script>
+
+
+</body>
+
+</html>

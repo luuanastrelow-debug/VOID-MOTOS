@@ -1,0 +1,527 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Potência das Motos | Speed Racing</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+            background: #050505;
+            color: #ffffff;
+            min-height: 100vh;
+        }
+
+
+        /* =========================
+           CABEÇALHO
+        ========================== */
+
+        header {
+            text-align: center;
+
+            padding: 70px 20px;
+
+            background:
+                linear-gradient(rgba(0, 0, 0, 0.65),
+                    rgba(0, 0, 0, 0.9)),
+                url("https://i.pinimg.com/736x/af/6f/3a/af6f3a982d83fc5917db4004e11ab928.jpg");
+
+            background-size: cover;
+            background-position: center;
+
+            border-bottom: 1px solid #333;
+
+            box-shadow:
+                0 10px 30px rgba(0, 0, 0, 0.8);
+        }
+
+        header h1 {
+            font-size: clamp(40px, 7vw, 65px);
+
+            letter-spacing: 7px;
+
+            font-weight: 900;
+
+            color: #ffffff;
+
+            text-shadow:
+                0 5px 20px #000000;
+        }
+
+        header p {
+            margin-top: 15px;
+
+            font-size: 16px;
+
+            color: #aaa;
+
+            letter-spacing: 4px;
+        }
+
+
+        /* =========================
+           MENU
+        ========================== */
+
+        nav {
+            position: sticky;
+
+            top: 0;
+
+            z-index: 100;
+
+            display: flex;
+
+            justify-content: center;
+
+            align-items: center;
+
+            gap: 35px;
+
+            padding: 18px;
+
+            background: rgba(5, 5, 5, 0.97);
+
+            border-bottom: 1px solid #292929;
+        }
+
+        nav a {
+            color: #aaa;
+
+            text-decoration: none;
+
+            font-size: 13px;
+
+            letter-spacing: 2px;
+
+            transition: 0.3s;
+        }
+
+        nav a:hover {
+            color: #ffffff;
+        }
+
+
+        /* =========================
+           CONTEÚDO
+        ========================== */
+
+        main {
+            max-width: 900px;
+
+            margin: 55px auto;
+
+            padding: 20px;
+        }
+
+
+        /* =========================
+           TÍTULO
+        ========================== */
+
+        .titulo {
+            text-align: center;
+
+            margin-bottom: 40px;
+        }
+
+        .titulo h2 {
+            font-size: 32px;
+
+            letter-spacing: 5px;
+
+            font-weight: 700;
+
+            color: #ffffff;
+        }
+
+        .titulo p {
+            margin-top: 12px;
+
+            color: #777;
+
+            font-size: 15px;
+        }
+
+
+        /* =========================
+           DESTAQUE
+        ========================== */
+
+        .destaque {
+            text-align: center;
+
+            padding: 45px 25px;
+
+            margin-bottom: 25px;
+
+            background:
+                linear-gradient(135deg,
+                    #1c1c1c,
+                    #080808);
+
+            border: 1px solid #444;
+
+            box-shadow:
+                0 15px 35px rgba(0, 0, 0, 0.8);
+        }
+
+        .destaque .icone {
+            font-size: 38px;
+
+            margin-bottom: 15px;
+
+            filter: grayscale(100%);
+        }
+
+        .destaque h2 {
+            font-size: 32px;
+
+            letter-spacing: 4px;
+
+            margin-bottom: 15px;
+
+            color: #ffffff;
+        }
+
+        .destaque p {
+            font-size: 17px;
+
+            color: #aaa;
+
+            line-height: 1.7;
+        }
+
+
+        /* =========================
+           CARDS
+        ========================== */
+
+        .card {
+            background:
+                linear-gradient(145deg,
+                    #151515,
+                    #090909);
+
+            border: 1px solid #2c2c2c;
+
+            border-left: 4px solid #777;
+
+            padding: 30px;
+
+            margin-bottom: 25px;
+
+            border-radius: 3px;
+
+            box-shadow:
+                0 10px 25px rgba(0, 0, 0, 0.7);
+
+            transition: 0.35s;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+
+            border-color: #777;
+
+            box-shadow:
+                0 15px 35px rgba(0, 0, 0, 0.9);
+        }
+
+        .card h2 {
+            color: #ffffff;
+
+            margin-bottom: 15px;
+
+            font-size: 24px;
+
+            letter-spacing: 1px;
+        }
+
+        .card p {
+            font-size: 17px;
+
+            line-height: 1.9;
+
+            color: #999;
+        }
+
+
+        /* =========================
+           LINHA DE SEPARAÇÃO
+        ========================== */
+
+        .linha {
+            width: 70px;
+
+            height: 2px;
+
+            background: #ffffff;
+
+            margin: 20px auto 35px;
+        }
+
+
+        /* =========================
+           RODAPÉ
+        ========================== */
+
+        footer {
+            text-align: center;
+
+            padding: 35px 20px;
+
+            background: #020202;
+
+            border-top: 1px solid #292929;
+
+            color: #555;
+
+            margin-top: 60px;
+        }
+
+        footer strong {
+            color: #ffffff;
+
+            letter-spacing: 3px;
+        }
+
+
+        /* =========================
+           RESPONSIVO
+        ========================== */
+
+        @media (max-width: 600px) {
+
+            header {
+                padding: 55px 15px;
+            }
+
+            header h1 {
+                font-size: 35px;
+
+                letter-spacing: 4px;
+            }
+
+            header p {
+                font-size: 12px;
+
+                letter-spacing: 2px;
+            }
+
+            nav {
+                gap: 15px;
+
+                padding: 15px 8px;
+            }
+
+            nav a {
+                font-size: 10px;
+
+                letter-spacing: 1px;
+            }
+
+            main {
+                width: 95%;
+
+                padding: 10px;
+            }
+
+            .titulo h2 {
+                font-size: 25px;
+
+                letter-spacing: 3px;
+            }
+
+            .card {
+                padding: 23px;
+            }
+
+            .card h2 {
+                font-size: 21px;
+            }
+
+            .card p {
+                font-size: 16px;
+            }
+
+        }
+    </style>
+
+</head>
+
+
+<body>
+
+
+    <!-- =========================
+         CABEÇALHO
+    ========================== -->
+
+    <header>
+
+        <h1>
+            POTÊNCIA DAS MOTOS
+        </h1>
+
+        <p>
+            FORÇA • VELOCIDADE • DESEMPENHO
+        </p>
+
+    </header>
+
+
+    <!-- =========================
+         MENU
+    ========================== -->
+
+    <nav>
+
+        <a href="file:///C:/Users/ALUNO/momos%F0%9F%92%95/site%20principal.html">
+            INÍCIO
+        </a>
+    </nav>
+
+
+    <!-- =========================
+         CONTEÚDO
+    ========================== -->
+
+    <main>
+
+
+        <div class="titulo">
+
+            <h2>
+                ENTENDA A POTÊNCIA
+            </h2>
+
+            <div class="linha"></div>
+
+            <p>
+                Conheça um pouco mais sobre o desempenho
+                dos motores das motocicletas.
+            </p>
+
+        </div>
+
+
+        <!-- DESTAQUE -->
+
+        <section class="destaque">
+
+            <div class="icone">
+
+            </div>
+
+            <h2>
+                POTÊNCIA
+            </h2>
+
+            <p>
+                A força do motor influencia diretamente
+                o desempenho de uma motocicleta.
+            </p>
+
+        </section>
+
+
+        <!-- CARD 1 -->
+
+        <section class="card">
+
+            <h2>
+                O que é potência?
+            </h2>
+
+            <p>
+                A potência de uma moto é uma característica
+                importante para definir seu desempenho.
+                Ela está relacionada à capacidade do motor
+                de produzir trabalho em determinado período,
+                influenciando a maneira como a motocicleta
+                acelera e desenvolve velocidade.
+            </p>
+
+        </section>
+
+
+        <!-- CARD 2 -->
+
+        <section class="card">
+
+            <h2>
+                Potência e velocidade
+            </h2>
+
+            <p>
+                A potência do motor influencia a capacidade
+                de aceleração e o desempenho da motocicleta.
+                Entretanto, a velocidade final também depende
+                de fatores como peso, aerodinâmica, transmissão
+                e relação de marchas.
+            </p>
+
+        </section>
+
+
+        <!-- CARD 3 -->
+
+        <section class="card">
+
+            <h2>
+                Cada moto tem seu estilo
+            </h2>
+
+            <p>
+                A potência varia entre os diferentes modelos
+                de motos. Algumas são econômicas e práticas
+                para o dia a dia, enquanto outras possuem
+                motores mais fortes, voltados para desempenho
+                e condução esportiva.
+            </p>
+
+        </section>
+
+
+        <!-- CARD 4 -->
+
+        <section class="card">
+
+            <h2>
+                Potência não é tudo
+            </h2>
+
+            <p>
+                Uma motocicleta com maior potência não significa
+                necessariamente que seja a mais adequada para
+                todas as situações. Peso, torque, ciclística,
+                suspensão, freios e experiência do piloto também
+                influenciam o comportamento da moto.
+            </p>
+
+        </section>
+
+
+    </main>
+
+
+
+</body>
+
+</html>
